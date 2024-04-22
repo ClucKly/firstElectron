@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Jumping Elements</title>
+    <style>
+        .jumpingElement {
+            width: 20px;
+            height: 20px;
+            background-color: #007bff;
+            position: absolute;
+            border-radius: 50%;
+            /* 圆形 */
+        }
+    </style>
+</head>
+
+<body>
+    <marquee><h1>Hello world!</h1></marquee>
+    <div class="jumpingElement"></div>
+    <div class="jumpingElement"></div>
+    <div class="jumpingElement"></div>
+
+    <script>
+        const jumpingElements = document.querySelectorAll('.jumpingElement');
+
+        function jumpRandomly(element) {
+            const maxX = window.innerWidth - 20; // 屏幕宽度减去元素宽度
+            const maxY = window.innerHeight - 20; // 屏幕高度减去元素高度
+
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            element.style.left = randomX + 'px';
+            element.style.top = randomY + 'px';
+        }
+
+        jumpingElements.forEach(element => {
+            jumpRandomly(element); // 页面加载时先执行一次
+            setInterval(() => jumpRandomly(element), 1000); // 每隔一秒执行一次
+        });
+    </script>
+</body>
+
+</html>
